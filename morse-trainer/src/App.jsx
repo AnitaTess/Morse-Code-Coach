@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import "./app.css";
+import "./App.css";
 
 const MORSE = {
   A: ".-",   B: "-...", C: "-.-.", D: "-..",  E: ".",
