@@ -111,10 +111,8 @@ const [writeStreak, setWriteStreak] = useState(0);
 const [isHolding, setIsHolding] = useState(false);
 
 const holdStartRef = useRef(0);
-const holdTimeoutRef = useRef(null);
 
 const HOLD_THRESHOLD = 220;     // ms: longer than this = dash
-const AUTO_SUBMIT_GAP = 900;    // ms: pause after last symbol triggers auto-check
 
 // Listening practice state
 const [listenWord, setListenWord] = useState(() => randomWord());
@@ -198,23 +196,10 @@ async function playWord(word) {
     }
   }
 
- function scheduleAutoSubmit(nextPattern) {
-  if (holdTimeoutRef.current) clearTimeout(holdTimeoutRef.current);
-
-  holdTimeoutRef.current = setTimeout(() => {
-    checkWrite(nextPattern);
-  }, AUTO_SUBMIT_GAP);
-}
-
 function addSymbol(sym) {
-  setInputPattern((prev) => {
-    const next = prev + sym;
-    setWriteResult(null);
-    scheduleAutoSubmit(next);
-    return next;
-  });
+  setInputPattern((prev) => prev + sym);
+  setWriteResult(null);
 }
-
 
 function clearWrite() {
   setInputPattern("");
@@ -259,12 +244,6 @@ function onPressEnd(e) {
   const sym = duration >= HOLD_THRESHOLD ? "-" : ".";
   addSymbol(sym);
 }
-useEffect(() => {
-  if (tab !== "write" && holdTimeoutRef.current) {
-    clearTimeout(holdTimeoutRef.current);
-  }
-}, [tab]);
-
 
   useEffect(() => {
     const onKey = (e) => {
@@ -358,6 +337,8 @@ useEffect(() => {
                     placeholder="Type the letter/number…"
                     maxLength={1}
                   />
+                </div>
+                <div style={{ marginTop: 12 }}>
                   <button className="primary" onClick={checkAnswer}>
                     Check
                   </button>
@@ -406,6 +387,7 @@ useEffect(() => {
       </div>
 
       <div className="row">
+        <button className="primary" onClick={() => checkWrite()}>Check</button>
         <button className="tab" onClick={clearWrite}>Clear</button>
       </div>
 
@@ -420,7 +402,7 @@ useEffect(() => {
       </div>
 
       <div className="hint">
-        Tip: pause ~1s after typing and it will auto-check.
+        Tip: Tap for dot, hold for dash — then press Check.
       </div>
     </div>
   </>
