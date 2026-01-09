@@ -445,7 +445,7 @@ useEffect(() => {
           className="answer"
           value={listenAnswer}
           onChange={(e) => {
-            setListenAnswer(e.target.value.toUpperCase().replace(/[^A-Z]/g, ""));
+            setListenAnswer(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ""));
             setListenResult(null);
           }}
           placeholder="Type the word…"
@@ -465,14 +465,6 @@ useEffect(() => {
           </span>
         )}
       </div>
-
-      <div className="row" style={{ marginTop: 10 }}>
-        <button className="tab" onClick={nextListeningWord}>Next word</button>
-        <button className="tab" onClick={() => playWord(listenWord)}>
-          Replay
-        </button>
-      </div>
-
       <div className="hint">
         Tip: Start with a slower speed (unit ~250–320ms) while learning words.
       </div>
@@ -483,16 +475,16 @@ useEffect(() => {
 
         <nav className="tabs">
           <TabButton active={tab === "learn"} onClick={() => setTab("learn")}>
-            Learning
+            Learn
           </TabButton>
           <TabButton active={tab === "practice"} onClick={() => setTab("practice")}>
-            Reading
+            Read
           </TabButton>
           <TabButton active={tab === "write"} onClick={() => setTab("write")}>
-            Writing
+            Write
           </TabButton>
 <TabButton active={tab === "listening"} onClick={() => setTab("listening")}>
-  Listening
+  Listen
 </TabButton>
 
         </nav>
