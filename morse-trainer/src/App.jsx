@@ -17,9 +17,9 @@ const WORDS = [
   "CAT", "DOG", "SUN", "RUN", "LOW", "RUN", "SAD", "CAN", "CAR", "WHY", "MOON", "STAR", "TREE", "FIRE", "WIND", "RAIN", "MEET", "DAY", "NIGHT", "CANDY", "PHONE",
   "CODE", "BEEP", "SIGN", "WAVE", "TIME", "NOTE", "HELP", "SAFE", "RENT", "FALL", "BACK", "MOVIE", "GAME", "BOOK", "FOOD", "WALK", "LEARN", "AXE", "BEE", "CLOUD",
   "CUP", "BAG", "HAT", "MAP", "KEY", "RING", "FISH", "BIRD", "DUCK", "FROG", "LION", "BEAR", "WOLF", "COW", "PIG", "SHEEP", "GOAT", "HEN", "FOX", "HATE", "SPORT",
-  "NORTH", "SOUTH", "EAST", "WEST", "SLOW", "FAST", "LIGHT", "DARK", "LOVE", "FEAR", "SING", "JUMP", "SONG", "GOLF", "GREAT", "CITY", "TOWN", "OWL", "OWNER",
+  "NORTH", "SOUTH", "EAST", "WEST", "SLOW", "FAST", "LIGHT", "DARK", "LOVE", "FEAR", "SING", "JUMP", "SONG", "GOLF", "GREAT", "CITY", "TOWN", "OWL", "OWNER", "SOS",
   "HELLO", "WORLD", "MORSE", "RADIO", "SOUND", "LIGHT", "BRAVE", "QUEUE", "WHERE", "THING", "HOUSE", "PLANE", "TRAIN", "EARTH", "ZOO", "ZONE", "ALL", "ANT", "AWARD",
-  "PLANT", "STONE", "RIVER", "OCEAN", "MUSIC", "DANCE", "PEACE", "HAPPY", "QUICK", "SMART", "STRONG", "QUIZ", "ZEBRA", "QUEST", "JAZZ", "FRUIT", "BUILD", "START", "END",
+  "PLANT", "STONE", "RIVER", "OCEAN", "MUSIC", "DANCE", "PEACE", "HAPPY", "QUICK", "SMART", "STRONG", "QUIZ", "ZEBRA", "QUEST", "JAZZ", "FRUIT", "BUILD", "START", "END", 
   "123", "404", "911", "2024", "007", "1998", "1984", "3002", "51", "666", "948", "12", "781", "369", "256", "519"
 ].filter(w => w.length >= 3 && w.length <= 6);
 
@@ -343,7 +343,7 @@ useEffect(() => {
                     <div className="bigPattern">{MORSE[practiceTarget]}</div>
                   </div>
                   <button className="primary" onClick={playTarget}>
-                    Play (Space)
+                    Play
                   </button>
                 </div>
 
@@ -359,7 +359,7 @@ useEffect(() => {
                     maxLength={1}
                   />
                   <button className="primary" onClick={checkAnswer}>
-                    Check (Enter)
+                    Check
                   </button>
                 </div>
 
@@ -371,10 +371,6 @@ useEffect(() => {
                       Nope — it was <b>{practiceTarget}</b>
                     </span>
                   )}
-                </div>
-
-                <div className="hint">
-                  Tip: Press <b>Space</b> to replay. Press <b>Enter</b> to submit.
                 </div>
               </div>
             </>
@@ -388,10 +384,6 @@ useEffect(() => {
             {writeTarget} 
           </div>
         </div>
-
-        <button className="primary" onClick={() => playMorse(MORSE[writeTarget], { unitMs })}>
-          Hear it
-        </button>
       </div>
 
       <div style={{ marginTop: 12 }}>
