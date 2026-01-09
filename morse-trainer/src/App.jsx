@@ -451,7 +451,9 @@ useEffect(() => {
           placeholder="Type the word…"
           maxLength={6}
         />
-        <button className="primary" onClick={checkListening}>
+      </div>
+      <div>
+         <button className="primary" onClick={checkListening}>
           Check
         </button>
       </div>
