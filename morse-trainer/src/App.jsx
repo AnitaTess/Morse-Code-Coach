@@ -453,7 +453,7 @@ useEffect(() => {
         />
       </div>
       <div>
-         <button className="primary" onClick={checkListening}>
+         <button className="primary" style={{ marginTop: 12 }} onClick={checkListening}>
           Check
         </button>
       </div>
